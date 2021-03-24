@@ -1,11 +1,12 @@
+const { update } = require('../models/User');
 const User = require('../models/User');
 
 module.exports = {
   getUser: async (req, res) => {
-    try{
+    try {
       const users = await User.findAll()
 
-      res.json({
+      res.status(200).json({
         message: "Success Get data",
         data: users
       })
@@ -15,13 +16,13 @@ module.exports = {
   },
 
   getUserByID: async (req, res) => {
-    try{
+    try {
       const ids = req.params.id
       const users = await User.findOne({
         where: {id: ids }
       })
 
-      res.json({
+      res.status(200).json({
         message: "Sucess get data by id",
         data: users
       })
@@ -32,8 +33,8 @@ module.exports = {
 
   addUser: async (req,res) => {
     try {
-      const inputUser = req.body
-      const newUser = await User.create(inputUser)
+      const inputDataUser = req.body
+      const newUser = await User.create(inputDataUser)
 
       res.status(200).json( {
         message: "Add user success",
@@ -45,18 +46,29 @@ module.exports = {
   },
 
   updateUser: async (req, res) => {
+    try {
+      const ids = req.params.id
+      const inputUpdateUser = req.body
+      const updateDataUser = await User.update(inputUpdateUser, {where:{id:ids}})
 
+      res.status(200).json({
+        message: "Update user success"
+      })
+    } catch(error) {
+      console.log(error)
+    }
   },
 
   deleteUser: async (req, res) => {
-    try{
+    try {
       const ids = req.params.id
       const deleteUser = await User.destroy({
         where: {id: ids}
       })
 
-      res.json({
+      res.status(200).json({
         message: "Delete user success",
+        data: User
       })
     } catch(error) {
       console.log(error)
