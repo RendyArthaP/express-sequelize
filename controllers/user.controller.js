@@ -11,13 +11,24 @@ module.exports = {
   },
 
   getUserByID: async (req, res) => {
+    const ids = req.params.id
     const users = await User.findOne({
-      where: {id: req.params.id}
+      where: {id: ids }
     })
 
     res.json({
       message: "Sucess get data by id",
       data: users
+    })
+  },
+
+  addUser: async (req,res) => {
+    const inputUser = req.body
+    const newUser = await User.create(inputUser)
+
+    res.status(200).json( {
+      message: "Add user success",
+      data: newUser
     })
   }
 }
