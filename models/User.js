@@ -6,7 +6,20 @@ const User = sequelize.define('user', {
     type: DataTypes.STRING
   },
   email: DataTypes.STRING,
-  birth_date: DataTypes.DATE
+  birth_date: DataTypes.DATE,
+  created_at: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.literal("NOW()")
+  },
+  updated_at: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.literal("NOW()")
+  }
+}, {
+  underscored: true,
+  timestamps: false
 })
 
 module.exports = User
