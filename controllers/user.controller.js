@@ -49,7 +49,9 @@ module.exports = {
     try {
       const ids = req.params.id
       const inputUpdateUser = req.body
-      const updateDataUser = await User.update(inputUpdateUser, {where:{id:ids}})
+      const updateDataUser = await User.update(inputUpdateUser, {
+        where:{id:ids}
+      })
 
       res.status(200).json({
         message: "Update user success"

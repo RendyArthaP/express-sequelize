@@ -23,6 +23,7 @@ const User = sequelize.define('user', {
   timestamps: false
 })
 
-User.hasMany(Todo);
+User.hasMany(Todo, {foreignKey: "user_id"});
+
 
 module.exports = User
