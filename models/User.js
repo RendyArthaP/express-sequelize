@@ -23,16 +23,6 @@ const User = sequelize.define('user', {
   timestamps: false
 })
 
-User.hasMany(Todo, {
-  foreignKey: {
-    name: "user_id"
-  }
-})
-
-Todo.belongsTo(User, {
-  foreignKey: {
-    name: "user_id"
-  }
-})
+User.hasMany(Todo);
 
 module.exports = User
