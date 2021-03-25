@@ -25,5 +25,4 @@ const User = sequelize.define('user', {
 
 User.hasMany(Todo, {foreignKey: "user_id"});
 
-
 module.exports = User
